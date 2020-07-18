@@ -51,7 +51,7 @@ class TestMaid(TestCase):
 
         os.remove('profile.png')
 
-    def test_model_should_have_created_and_updated_fields(self):
+    def test_model_should_have_created_and_modified_fields(self):
         # Given
         Maid.objects.create(
             name='BB',
