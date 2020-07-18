@@ -33,3 +33,5 @@ def say1(number):
 # not recommended
 def say2(number: int):
     print('hi ' + str(number))
+
+print(__name__)
