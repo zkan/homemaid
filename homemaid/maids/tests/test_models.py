@@ -50,3 +50,20 @@ class TestMaid(TestCase):
         self.assertEqual(maid.profile_image.name, 'profile.png')
 
         os.remove('profile.png')
+
+    def test_model_should_have_created_and_updated_fields(self):
+        # Given
+        Maid.objects.create(
+            name='BB',
+            birthdate=date(1998, 4, 29),
+            description='Super Maid of the Year',
+            certificate='Best Maid 2012',
+            salary=3000
+        )
+
+        # When
+        maid = Maid.objects.last()
+
+        # Then
+        self.assertTrue(maid.created)
+        self.assertTrue(maid.modified)
