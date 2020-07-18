@@ -67,3 +67,6 @@ class TestMaid(TestCase):
         # Then
         self.assertTrue(maid.created)
         self.assertTrue(maid.modified)
+
+        assert maid.created is not None
+        assert maid.modified is not None
