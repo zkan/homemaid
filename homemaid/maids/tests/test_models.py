@@ -23,11 +23,11 @@ class TestMaid(TestCase):
         maid = Maid.objects.last()
 
         # Then
-        self.assertEqual(maid.name, 'BB')
-        self.assertEqual(maid.birthdate, date(1998, 4, 29))
-        self.assertEqual(maid.description, 'Super Maid of the Year')
-        self.assertEqual(maid.certificate, 'Best Maid 2012')
-        self.assertEqual(maid.salary, 3000)
+        assert maid.name == 'BB'
+        assert maid.birthdate == date(1998, 4, 29)
+        assert maid.description == 'Super Maid of the Year'
+        assert maid.certificate == 'Best Maid 2012'
+        assert maid.salary == 3000
 
     def test_model_should_have_image_field(self):
         # Given
