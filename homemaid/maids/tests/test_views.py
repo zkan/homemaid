@@ -75,9 +75,12 @@ class TestMaidAddView(TestCase):
         response = self.client.get(reverse('maid-add'))
 
         assert '<form action="." method="POST">' in str(response.content)
+        assert '<input type="hidden" name="csrfmiddlewaretoken"' in str(response.content)
 
         name_field = '<input type="text" name="name" maxlength="300" required id="id_name">'
         assert name_field in str(response.content)
 
         button = '<button class="btn btn-primary" type="submit">Submit</button>'
         assert button in str(response.content)
+
+    
