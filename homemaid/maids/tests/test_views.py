@@ -162,9 +162,11 @@ class TestMaidAddView(TestCase):
 
 
 class TestMaidAPIView(TestCase):
+    def setUp(self):
+        self.api_client = APIClient()
+
     def test_api_view_should_return_200(self):
-        client = APIClient()
-        response = client.get(reverse('maid-list-api'))
+        response = self.api_client.get(reverse('maid-list-api'))
         assert response.status_code == 200
 
     def test_api_view_should_return_maid_list(self):
@@ -183,7 +185,6 @@ class TestMaidAPIView(TestCase):
             salary=3200
         )
 
-        client = APIClient()
-        response = client.get(reverse('maid-list-api'))
+        response = self.api_client.get(reverse('maid-list-api'))
         
         assert response.data == [{'id': 1, 'name': 'BB'}, {'id': 2, 'name': 'CC'}]
