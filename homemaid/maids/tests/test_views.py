@@ -83,4 +83,14 @@ class TestMaidAddView(TestCase):
         button = '<button class="btn btn-primary" type="submit">Submit</button>'
         assert button in str(response.content)
 
+    def test_submit_form_should_save_new_maid(self):
+        data = {
+            'name': 'BB'
+        }
+        self.client.post(reverse('maid-add'), data=data)
+
+        maid = Maid.objects.last()
+
+        assert maid.name == 'BB'
+
     

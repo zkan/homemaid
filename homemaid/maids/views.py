@@ -26,6 +26,15 @@ class MaidAddView(View):
         }
         return render(request, self.template_name, context)
 
+    def post(self, request):
+        form = MaidForm(request.POST)
+        if form.is_valid():
+            form.save()
+        
+        # print(form.errors)
+
+        return HttpResponse()
+
 
 def maid_another_list_view(request):
     template_name = 'maid_list.html'
