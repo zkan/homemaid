@@ -22,3 +22,8 @@ class MaidListView(View):
             html += f'<li>{maid.name}</li>'
 
         return HttpResponse(html)
+
+
+def maid_another_list_view(request):
+    if request.method == 'GET':
+        return HttpResponse()
