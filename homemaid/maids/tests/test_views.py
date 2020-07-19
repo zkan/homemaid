@@ -66,6 +66,48 @@ class TestMaidListAnotherView(TestCase):
         assert '<li>BB</li>' in str(response.content)
         assert '<li>CC</li>' in str(response.content)
 
+    @patch('maids.views.Maid')
+    def test_mock_orm_1(self, mock):
+        class MyObject:
+            pass
+
+        first = MyObject()
+        first.name = 'BC'
+
+        second = MyObject()
+        second.name = 'CC'
+
+        mock.objects.all.return_value = [
+            first,
+            second,
+        ]
+        # When
+        response = self.client.get(reverse('maid-another-list'))
+
+        assert '<li>BC</li>' in str(response.content)
+        assert '<li>CC</li>' in str(response.content)
+
+    @patch('maids.views.Maid.objects.all')
+    def test_mock_orm_2(self, mock):
+        class MyObject:
+            pass
+
+        first = MyObject()
+        first.name = 'BC'
+
+        second = MyObject()
+        second.name = 'CC'
+
+        mock.return_value = [
+            first,
+            second,
+        ]
+        # When
+        response = self.client.get(reverse('maid-another-list'))
+
+        assert '<li>BC</li>' in str(response.content)
+        assert '<li>CC</li>' in str(response.content)
+
 
 class TestMaidAddView(TestCase):
     def test_view_should_respond_200(self):
@@ -115,4 +157,3 @@ class TestMaidAddView(TestCase):
                                      'from@example.com', 
                                      ['to@example.com'], 
                                      fail_silently=False)
-        
